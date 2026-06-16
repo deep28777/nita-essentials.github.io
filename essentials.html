@@ -247,12 +247,28 @@
     });
   });
 
+
+  // For different category buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      document.querySelectorAll('.product-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+      });
+    });
+  });
+ 
+
+
   //  For loading footer.html
   fetch('./footer.html')
   .then(response => response.text())
   .then(data => {
     document.getElementById('footer').innerHTML = data;
   });
+
 </script>
 
 <script src="notices.js"></script>
